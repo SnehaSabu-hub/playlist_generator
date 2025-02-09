@@ -27,3 +27,94 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('https://source.unsplash.com/1600x900/?aesthetic,night') no-repeat center center/cover;
+    text-align: center;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    width: 60%;
+    margin: 50px auto;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+select, button {
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    background-color: #ff4081;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e6006f;
+}
+
+#playlist {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    text-align: left;
+    padding-left: 20px;
+}
+
+function generatePlaylist() {
+    let mood = document.getElementById("mood").value;
+    let playlistDiv = document.getElementById("playlist");
+
+    let playlists = {
+        happy: [
+            "Mal: Jimikki Kammal - Vineeth Sreenivasan", "Mal: Thallumaala - Thallumaala", "Mal: Manikya Malaraya Poovi - Oru Adaar Love",
+            "Tam: Enjoy Enjaami - Dhee", "Tam: Aaluma Doluma - Vedalam", "Tam: Vaathi Coming - Master",
+            "Hin: Gallan Goodiyan - Dil Dhadakne Do", "Hin: London Thumakda - Queen", "Hin: Kala Chashma - Baar Baar Dekho",
+            "Eng: Happy - Pharrell Williams", "Eng: Can't Stop the Feeling - Justin Timberlake", "Eng: Shake It Off - Taylor Swift",
+            "Mal: Pathirayo Pakalai - Hridayam", "Mal: Parayuvaan - Ishq", "Mal: Vathikkalu Vellaripravu - Sufiyum Sujatayum",
+            "Tam: Mersal Arasan - Mersal", "Tam: Donu Donu Donu - Maari", "Tam: Sodakku - Thaanaa Serndha Koottam",
+            "Hin: Badtameez Dil - Yeh Jawaani Hai Deewani", "Hin: The Breakup Song - Ae Dil Hai Mushkil", "Hin: Chogada - Loveyatri",
+            "Eng: Uptown Funk - Bruno Mars", "Eng: Dance Monkey - Tones and I", "Eng: Levitating - Dua Lipa",
+            "Mal: Kudukku - Love Action Drama", "Mal: Lailakame - Ezra", "Mal: Minnal Murali Theme - Minnal Murali",
+            "Tam: Rowdy Baby - Maari 2", "Tam: Marana Mass - Petta", "Tam: Oh Nanba - Lingaa"
+        ],
+        sad: [
+            "Mal: Jeevamshamayi - Theevandi", "Mal: Neeyilla Neram - Lucifer", "Mal: Akale - Ennu Ninte Moideen",
+            "Tam: Venmathi Venmathiye - Minnale", "Tam: Pogathey - Gautham Vasudev Menon", "Tam: Kanave Kanave - David",
+            "Hin: Agar Tum Saath Ho - Tamasha", "Hin: Tera Ban Jaunga - Kabir Singh", "Hin: Kahani Suno - Kaifi Khalil",
+            "Eng: Someone Like You - Adele", "Eng: Let Her Go - Passenger", "Eng: Fix You - Coldplay",
+            "Mal: Arikil Pathiye - Nee-Na", "Mal: Mounangal - Diamond Necklace", "Mal: Ee Kaattu - Adam Joan",
+            "Tam: Nenjukkul Peidhidum - Vaaranam Aayiram", "Tam: Oru Naalil - Pudhupettai", "Tam: Kannazhaga - 3",
+            "Hin: Phir Bhi Tumko Chaahunga - Half Girlfriend", "Hin: Sun Raha Hai - Aashiqui 2", "Hin: Tum Mile - Tum Mile",
+            "Eng: Say Something - A Great Big World", "Eng: All I Want - Kodaline", "Eng: When I Was Your Man - Bruno Mars"
+        ],
+        romantic: [
+            "Mal: Malare - Premam", "Mal: Puthiyoru Pathayil - Varathan", "Mal: Uyirin Nadhiye - Operation Java",
+            "Tam: Munbe Vaa - Sillunu Oru Kaadhal", "Tam: Thalli Pogathey - Achcham Yenbadhu Madamaiyada", "Tam: Vinnaithaandi Varuvaayaa - VTV",
+            "Hin: Tum Hi Ho - Aashiqui 2", "Hin: Janam Janam - Dilwale", "Hin: Raabta - Agent Vinod",
+            "Eng: Perfect - Ed Sheeran", "Eng: Thinking Out Loud - Ed Sheeran", "Eng: You Are The Reason - Calum Scott"
+        ]
+    };
+
+    let selectedPlaylist = playlists[mood];
+
+    // Shuffle and pick 20 songs for variety
+    selectedPlaylist = selectedPlaylist.sort(() => Math.random() - 0.5).slice(0, 20);
+
+    playlistDiv.innerHTML = `<h2>🎧 Your ${mood} Playlist</h2><ul>` + 
+        selectedPlaylist.map(song => `<li>${song}</li>`).join("") + `</ul>`;
+}
